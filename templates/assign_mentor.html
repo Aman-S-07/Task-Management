@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block title%}Assign Mentor{% endblock title %}
+
+<!-- assign_mentor.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Mentor</title>
+</head>
+<body>
+    <h1>Assign Mentor to {{ user.username }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Assign Mentor</button>
+    </form>
+</body>
+</html>
+
+
+
+{% endblock body %}

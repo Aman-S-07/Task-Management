@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}edit_profile_admin{% endblock title %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/edit_profile.css"/>
+<div class="edit-profile-container">
+    <h1>Edit Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="id_last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="id_mobile_number">Mobile Number:</label>
+            <input type="text" id="mobile_number" name="mobile_number" value="{{ user.mobile_number }}" class="form-control">
+        </div>
+
+
+        <div class="form-group">
+            <label for="id_profile_picture">Profile Picture:</label>
+            <input type="file" id="id_profile_picture" name="profile_picture" class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/Dashboard.css">
+        <title>Admin Task Dashboard</title>
+    </head>
+    <body>
+
+        <h1>Admin Task Dashboard</h1>
+        
+        <!-- Filter Form -->
+        <form method="get" action="{% url 'admin_dashboard' %}">
+            <select name="status">
+                <option value="">All Statuses</option>
+                <option value="In Progress" {% if status_filter == 'In Progress' %}selected{% endif %}>In Progress</option>
+                <option value="Not Started" {% if status_filter == 'Not Started' %}selected{% endif %}>Not Started</option>
+                <option value="Completed" {% if status_filter == 'Completed' %}selected{% endif %}>Completed</option>
+            </select>
+
+            <select name="intern">
+                <option value="">All Interns</option>
+                {% for intern in interns %}
+                    <option value="{{ intern.id }}" {% if intern_filter == intern.id|stringformat:"s" %}selected{% endif %}>
+                        {{ intern.first_name }} {{ intern.last_name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <select name="superuser">
+                <option value="">All Users</option>
+                <option value="1" {% if superuser_filter == '1' %}selected{% endif %}>Mentor's Only</option>
+            </select>
+
+            <input type="text" name="q" placeholder="Search by user name" value="{{ search_query|default_if_none:'' }}">
+            
+            <!-- Date Filters -->
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" value="{{ start_date|default_if_none:'' }}">
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" value="{{ end_date|default_if_none:'' }}">
+
+            <button type="submit">Filter</button>
+        </form>
+
+        <!-- Task Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Created By</th>
+                    <th>Assigned By</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.created_by.get_full_name }}</td>
+                    <td>{{ task.assigned_to.get_full_name }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.end_date }}</td>
+                    <td>{{ task.remarks }}</td>
+                    <td>
+                        <a href="{% url 'update_task' task.id %}">Update</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">No tasks found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if tasks.has_previous %}
+                    <a href="?page=1{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.intern %}&intern={{ request.GET.intern }}{% endif %}{% if request.GET.superuser %}&superuser={{ request.GET.superuser }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
+                    <a href="?page={{ tasks.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.intern %}&intern={{ request.GET.intern }}{% endif %}{% if request.GET.superuser %}&superuser={{ request.GET.superuser }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ tasks.number }} of {{ tasks.paginator.num_pages }}.
+                </span>
+
+                {% if tasks.has_next %}
+                    <a href="?page={{ tasks.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.intern %}&intern={{ request.GET.intern }}{% endif %}{% if request.GET.superuser %}&superuser={{ request.GET.superuser }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+                    <a href="?page={{ tasks.paginator.num_pages }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.intern %}&intern={{ request.GET.intern }}{% endif %}{% if request.GET.superuser %}&superuser={{ request.GET.superuser }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+    </body>
+    </html>
+{% endblock body %}

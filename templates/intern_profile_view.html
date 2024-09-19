@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Intern Profile View{% endblock title %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/intern_profile_view.css"/>
+
+<div class="profile-container">
+    <h1>Profile</h1>
+
+    {% for intern in interns %}
+    <div class="profile-card">
+        <div class="profile-pic">
+            {% if intern.profile_picture %}
+                <img src="{{ intern.profile_picture.url }}" alt="{{ intern.user.first_name }}'s Profile Picture">
+            {% else %}
+                <img src="/static/img/Login-background.jpg" alt="Default Profile Picture">
+            {% endif %}
+        </div>
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ intern.user.first_name }} {{ intern.user.last_name }}</p>
+            <p><strong>Username:</strong> {{ intern.user.username }}</p>
+            <p><strong>Email:</strong> {{ intern.user.email }}</p>
+            <p><strong>Mobile Number:</strong> {{ intern.user.mobile_number }}</p>
+            <p><strong>Date Joined:</strong> {{ intern.user.date_joined|date:"F j, Y" }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+    <a href="{% url 'intern_list' %}" class="btn-back">Back to Intern List</a>
+</div>
+
+{% endblock body %}

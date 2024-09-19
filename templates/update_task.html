@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}update_task{% endblock title %}
+
+{% block body %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Update_task.css' %}">
+    <title>Update Task</title>
+</head>
+<body>
+    <h1>Update Task</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="Not Stertded" {% if task.status == 'Not Started'%}selected{% endif %}>Not Started</option>
+            <option value="In Progress" {% if task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+            <option value="Completed" {% if task.status == 'Completed' %}selected{% endif %}>Completed</option>
+        </select><br>
+        <label for="remarks">Remarks:</label>
+        <textarea id="remarks" name="remarks">{{ task.remarks }}</textarea><br>
+        <button type="submit">Update Task</button>
+    </form>
+</body>
+</html>
+
+{% endblock body %}

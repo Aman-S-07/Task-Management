@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}intern_list{% endblock title %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/intern_list.css"/>
+
+<h1>Intern List</h1>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'intern_list' %}">
+    <input type="text" name="search" value="{{ search_query }}" placeholder="Search interns...">
+    <button type="submit">Search</button>
+</form>
+
+<!-- Interns Table -->
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for intern in interns %}
+            <tr>
+                <td>{{ intern.intern_id }}</td>
+                <td>{{ intern.user.first_name }} {{ intern.user.last_name }}</td>
+                <td>{{ intern.user.username }}</td>
+                <td>{{ intern.user.email }}</td>
+                <td>
+                    <a href="{% url 'intern_profile_view' intern.intern_id %}">View Profile</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">No interns found.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Intern Pagination -->
+<div class="pagination">
+    <span class="step-links">
+        {% if interns.has_previous %}
+            <a href="?search={{ search_query }}&page_interns=1">&laquo; first</a>
+            <a href="?search={{ search_query }}&page_interns={{ interns.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ interns.number }} of {{ interns.paginator.num_pages }}.
+        </span>
+
+        {% if interns.has_next %}
+            <a href="?search={{ search_query }}&page_interns={{ interns.next_page_number }}">next</a>
+            <a href="?search={{ search_query }}&page_interns={{ interns.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% comment %} <a href="{% url 'Home' %}">Back to home</a> {% endcomment %}
+
+{% if interns %}
+    <a href="{% url 'home_page' %}?intern_id={{ interns.0.intern_id }}">Back to home</a>
+{% else %}
+    <a href="{% url 'home_page' %}">Back to home</a>
+{% endif %}
+
+{% endblock body %}

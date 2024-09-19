@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}home_page{% endblock title %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/Homepage.css" />
+{% if user.is_authenticated  %}
+<div class="container">
+    <div class="welcome-section">
+        <h1>Welcome to Task Manager</h1>
+        <p>Manage your tasks efficiently and effectively.</p>
+        <a href="{% url 'create_task' %}" class="btn">Create New Task</a>
+        <a href="{% url 'user_task_list' %}" class="btn">User Tasks List</a>
+        <a href="Task_Chart" class="btn">Task Pending Chart</a>
+        <a href="completed_task" class="btn">Completed Task</a>
+    </div>
+</div>
+
+
+    <div class="features-section">
+        <h2>Features</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Task Creation</h3>
+                <p>Easily create and manage your tasks.</p>
+            </div>
+            <div class="feature">
+                <h3>Category Management</h3>
+                <p>Organize tasks into categories for better tracking.</p>
+            </div>
+            <div class="feature">
+                <h3>Progress Tracking</h3>
+                <p>Track the progress of your tasks and stay on top of deadlines.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock body %}

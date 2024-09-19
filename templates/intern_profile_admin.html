@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}intern_profile_admin{% endblock title %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="/static/superuser_profile1.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profile</h1>
+        <div class="profile-info">
+            <div class="profile-picture">
+                {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt={{"user.first_name"}}>
+                {% else %}
+                    <img src="/static/img/Login-background.jpg" alt="Default Profile Picture">
+                {% endif %}
+            </div>
+            <div class="profile-details">
+                <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Mobile Number:</strong> {{ user.mobile_number }}</p>
+            </div>
+        </div>
+
+        <a href='edit_profile_admin', user.id >
+            <i class="bi bi-pencil-square" style="font-size: 1.5rem;"></i>
+        </a>
+
+
+    </div>
+
+    <li class="button-link">
+        <a class="button" href="{% url 'logout' %}">Logout</a>
+    </li>
+
+                 
+</body>
+</html>
+{% endblock body %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Daily Task Due Dates{% endblock title %}
+
+{% block body %}
+
+<link rel="stylesheet" href="/static/intern_list.css"/>
+
+<div class="container">
+    <h1 class="text-center my-4">Due Dates for today</h1>
+
+    <form method="get" action="{% url 'daily_due_dates' %}">
+        <input type="text" name="q" value="{{ search_query|default_if_none:'' }}" placeholder="Search interns...">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if tasks %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Intern Name</th>
+                    <th>Task Name</th>
+                    <th>Email</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.assigned_to.get_full_name }}</td>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.created_by.email }}</td>
+                        <td>{{ task.end_date|date:"Y-m-d" }}</td>
+                        <td>{{ task.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if tasks.has_previous %}
+                    <a href="?q={{ search_query }}&page={{ tasks.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ tasks.number }} of {{ tasks.paginator.num_pages }}
+                </span>
+
+                {% if tasks.has_next %}
+                    <a href="?q={{ search_query }}&page={{ tasks.next_page_number }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+
+    {% else %}
+        <p class="text-center">No tasks due today.</p>
+    {% endif %}
+</div>
+
+{% endblock body %}
