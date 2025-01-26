@@ -374,7 +374,6 @@ def Category_Task(request, category_id):
 def Task_Chart(request):
     categories = Category.objects.all()
     pending_counts = {}
-
     for category in categories:
         # Count tasks with a start date greater than the current time
         count = Task.objects.filter(

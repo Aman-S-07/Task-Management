@@ -39,7 +39,7 @@ class RegisterForm(models.Model):
     confirm_password = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    mobile_number = models.CharField(max_length=15, default='Contact No.')
+    mobile_number = models.CharField(max_length=12, default='Mobile No.')
 
 
 class Category(models.Model):
@@ -117,7 +117,7 @@ class Mentor(models.Model):
 # Assuming you have a Profile model linked to User
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    mobile_number = models.CharField(max_length=15, default='Conatct No:')
+    mobile_number = models.CharField(max_length=12, default='Conatct No:')
     profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
     mentor = models.ForeignKey(Mentor, null=True, blank=True, on_delete=models.SET_NULL)
 

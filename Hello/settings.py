@@ -136,15 +136,21 @@ STATICFILES_DIRS = [
    os.path.join(BASE_DIR , 'static')
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Example: 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'amansahu7431@gmail.com'
-EMAIL_HOST_PASSWORD = 'dbpp lsja qmnx nsdl'
-DEFAULT_FROM_EMAIL = 'amansahu7431@gmail.com'
-ADMIN_EMAILS = 'amansahu7431@gmail.com'
 
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+ADMIN_EMAILS = os.getenv('ADMIN_EMAILS')
 
 APPEND_SLASH = False
 

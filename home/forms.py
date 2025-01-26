@@ -1,3 +1,4 @@
+import re
 from django import forms
 from .models import Activity, Intern
 from django.contrib.auth.models import User
@@ -41,6 +42,20 @@ class RegistrationForm(forms.ModelForm):
 
         if password and confirm_password and password != confirm_password:
             self.add_error('confirm_password', "Passwords do not match")
+            
+        if password:
+            if len(password) < 8:
+                self.add_error('password', "Password must be at least 8 characters long.")
+            if not re.search(r"[A-Z]", password):
+                self.add_error('password', "Password must contain at least one uppercase letter.")
+            if not re.search(r"[a-z]", password):
+                self.add_error('password', "Password must contain at least one lowercase letter.")
+            if not re.search(r"[0-9]", password):
+                self.add_error('password', "Password must contain at least one digit.")
+            if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+                self.add_error('password', "Password must contain at least one special character.")
+
+        return cleaned_data
 
 class CategoryForm(forms.ModelForm):
     class Meta:
