@@ -176,3 +176,5 @@ SESSION_COOKIE_AGE = 300  # 5 minutes
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+ALLOWED_HOSTS = ['*']
