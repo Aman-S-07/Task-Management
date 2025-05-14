@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'amansahu743/task-management:1.0.0'
+        DOCKER_IMAGE = 'amansahu7431/task-management:1.0.0'
     }
 
     stages {
