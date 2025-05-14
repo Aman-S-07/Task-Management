@@ -11,6 +11,11 @@ phases:
       python: 3.11
     commands:
       - echo "Installing dependencies..."
+      - echo "Current working directory is: $(pwd)"
+      - echo "Directory listing is:"
+      - ls -la
+      - echo "Checking subdirectories:"
+      - ls -la */
       - pip install -r requirements.txt
 
   pre_build:
