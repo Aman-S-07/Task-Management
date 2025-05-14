@@ -38,7 +38,7 @@ pipeline {
                 expression { return env.BRANCH_NAME == 'main' }
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-id', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-id', usernameVariable: 'Aman-S-07', passwordVariable: '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')]) {
                     sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
                     sh 'docker push $DOCKER_IMAGE'
                 }
