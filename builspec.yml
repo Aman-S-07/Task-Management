@@ -28,4 +28,10 @@ phases:
   post_build:
     commands:
       - echo "Build and push successful!"
+      - mkdir -p output
+      - echo "Docker build completed at $(date)" > output/build-info.txt
+
+artifacts:
+  files:
+    - output/build-info.txt
 
