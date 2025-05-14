@@ -49,7 +49,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f task-management-app || true
-                    docker run -d --name task-management-app -p 8080:8000 $DOCKER_IMAGE
+                    docker run -d --name task-management-app -p 8090:8000 $DOCKER_IMAGE
                 '''
             }
         }
