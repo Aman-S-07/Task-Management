@@ -9,6 +9,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
+                git credentialsId: 'github-credentials',
                 git branch: 'main', url: 'https://github.com/Aman-S-07/Task-Management.git'
             }
         }
