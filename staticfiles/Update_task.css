@@ -1,0 +1,100 @@
+/* Form Styling */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto; /* Center form on the page */
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 26px; /* Slightly larger heading for better emphasis */
+    margin-bottom: 24px;
+    color: #2c3e50;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
+}
+
+/* Label Styling */
+label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+    color: #333; /* Darker color for better readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Input and Select Styling */
+select,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px; /* Increased padding for better touch targets */
+    font-size: 15px; /* Slightly larger font size */
+    margin-bottom: 16px; /* Increased margin for better spacing */
+    border: 1px solid #ddd; /* Slightly lighter border for a softer look */
+    border-radius: 6px; /* Slightly larger border radius */
+    background-color: #fafafa; /* Lighter background for inputs */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Light inner shadow */
+}
+
+/* Adjust for textarea */
+textarea {
+    resize: vertical;
+    min-height: 120px; /* Increased minimum height */
+}
+
+/* Input and Select Focus Styling */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #3498db;
+    background-color: #ffffff; /* Clear background on focus */
+    outline: none;
+    box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
+}
+
+/* Button Styling */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px; /* Increased padding for better touch targets */
+    font-size: 17px; /* Larger font size for better readability */
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"]:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 22px; /* Slightly smaller on smaller screens */
+    }
+
+    select, textarea, input, button[type="submit"] {
+        font-size: 15px; /* Adjust font size for better readability on small screens */
+    }
+}
