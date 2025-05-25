@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'Hello.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taskdb',
+        'NAME': 'taskdb_wiw2',  # From the URL path
         'USER': 'taskuser',
-        'PASSWORD': 'Azlm@123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'tPUAw6g4Ut5XeKtw2kcOAI6zUUO2tzWg',  # From the URL
+        'HOST': 'dpg-d0pnrs6uk2gs739s81ig-a.oregon-postgres.render.com',
+        'PORT': '5432',  # Default postgres port
     }
 }
 
