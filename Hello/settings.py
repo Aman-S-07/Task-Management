@@ -92,14 +92,13 @@ WSGI_APPLICATION = 'Hello.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taskdb_wiw2',  # From the URL path
-        'USER': 'taskuser',
-        'PASSWORD': 'tPUAw6g4Ut5XeKtw2kcOAI6zUUO2tzWg',  # From the URL
-        'HOST': 'dpg-d0pnrs6uk2gs739s81ig-a.oregon-postgres.render.com',
-        'PORT': '5432',  # Default postgres port
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
