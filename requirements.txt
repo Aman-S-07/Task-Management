@@ -9,3 +9,4 @@ sqlparse==0.5.3
 click
 dotenv
 whitenoise
+psycopg2-binary
