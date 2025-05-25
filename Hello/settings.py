@@ -59,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'home.middleware.InternRequiredMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.middleware.csrf.CsrfViewMiddleware',
 
 ]
@@ -182,3 +184,4 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # or similar folder
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
