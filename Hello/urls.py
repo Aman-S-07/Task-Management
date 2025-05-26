@@ -9,7 +9,7 @@ admin.site.site_title = "Task Admin Portal"
 admin.site.index_title = "Management portal" 
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('home.urls')),
     
