@@ -1,9 +1,7 @@
 from django.contrib import admin
 from .models import Category, Contact, Task
-from .models import Mentor
 
 admin.site.register(Task)
-admin.site.register(Mentor)
 
 
 

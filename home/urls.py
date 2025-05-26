@@ -85,6 +85,8 @@ urlpatterns = [
  
     # Re-Attempt
     path('reattempt_task/<int:task_id>/', views.reattempt_task, name='reattempt_task'),
+    
+    path('ads.txt', views.ads_txt, name='ads.txt'),
         
 
     # Static and media files handling
