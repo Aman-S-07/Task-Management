@@ -144,7 +144,6 @@ gunicorn Hello.wsgi
 ### 🤝 Contributing
 ```
 Pull requests are welcome.
-For major changes, please create an issue first.
 ```
 📄 License
 This project is open source and free to use.
