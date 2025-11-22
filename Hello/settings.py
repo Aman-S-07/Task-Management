@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+DEBUG = True
+
 
 import os
 from dotenv import load_dotenv
@@ -32,7 +34,7 @@ load_dotenv(dotenv_path=BASE_DIR / '.env')
 SECRET_KEY = 'django-insecure-fvg+k*t1yjqn8t2^z264ghhy518i3asn2=m1n43^lvg!&i^$m9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
 
 ALLOWED_HOSTS = ['127.0.0.1' , '192.168.29.147', '192.168.1.13' , '0.0.0.0', 'localhost']
 
